@@ -1,10 +1,12 @@
-<section id="thermometer">
-  <p>show thermometer here</p>
+<section id="thermometer" class="container">
+  <p class="text-center">{{thermometer}}</p>
 </section>
 
 <section id="clothes" class="container">
   <ul id="clothes-list" class="row">
-    <li *ngFor="let cloth of clothes; let i = index;" class="cloth col-4">
+    <li *ngFor="let cloth of clothes; let i = index;" class="cloth col-4"
+        [ngClass]="{'selected' : this.clothSet[cloth.id]}"
+    (click)="toggle(cloth)">
       <img src="{{cloth.image}}" class="mx-auto d-block"/>
     </li>
   </ul>
