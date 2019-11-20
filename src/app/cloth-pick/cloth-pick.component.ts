@@ -24,7 +24,8 @@ export class ClothPickComponent implements OnInit {
    */
   thermometer: {
     value: number,
-    label: string
+    label: string,
+    class: string,
   };
 
   /**
@@ -73,14 +74,15 @@ export class ClothPickComponent implements OnInit {
 
     // compare that with the current temperature to get the thermometer value
     const feltTemperature = this.computeFeltTemperature();
-    const thermometerValue = currentSetTemperature - feltTemperature;
+    const value = currentSetTemperature - feltTemperature;
 
     // set the label, like "a little too cold"
-    const thermometerLabel = this.getLabel(thermometerValue);
+    const [label, className] = this.getLabel(value);
 
     this.thermometer = {
-      value: thermometerValue,
-      label: thermometerLabel
+      value,
+      label,
+      class: className
     };
   }
 
@@ -109,17 +111,17 @@ export class ClothPickComponent implements OnInit {
    * @param value temperature
    */
   private getLabel(value: number) {
-    if (value === 0) { return 'perfect!'; }
+    if (value === 0) { return ['perfect!', 'bg-success']; }
 
-    if (value <= -20) { return 'much too cold!'; }
-    if (value <= -5) { return 'too cold'; }
-    if (value <= -2) { return 'a little too cold'; }
+    if (value <= -20) { return ['much too cold!', 'bg-danger']; }
+    if (value <= -5) { return ['too cold', 'bg-danger']; }
+    if (value <= -2) { return ['a little too cold', 'bg-warning']; }
 
-    if (value <= 2) { return 'ok'; }
+    if (value <= 2) { return ['ok', 'bg-success']; }
 
-    if (value < 5) { return 'a little too warm'; }
-    if (value < 20) { return 'too warm'; }
-    if (value > 20) { return 'much too warm!'; }
+    if (value < 5) { return ['a little too warm', 'bg-warning']; }
+    if (value < 20) { return ['too warm', 'bg-danger']; }
+    if (value > 20) { return ['much too warm!', 'bg-danger']; }
   }
 
 }
