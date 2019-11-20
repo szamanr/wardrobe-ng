@@ -1,5 +1,10 @@
 <section id="thermometer" class="container">
-  <p class="text-center">{{thermometer}}</p>
+  <div class="progress">
+    <div class="progress-bar progress-bar-success" role="progressbar" [attr.aria-valuenow]="thermometer.value" aria-valuemin="-20" aria-valuemax ="20"
+         style="min-width: 2em;" [style.width]="((20+thermometer.value)/40)*100 + '%'">
+      {{thermometer.label}}
+    </div>
+  </div>
 </section>
 
 <section id="clothes" class="container">

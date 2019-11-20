@@ -22,7 +22,10 @@ export class ClothPickComponent implements OnInit {
   /**
    * the value indicating how cold / warm we'll feel if wearing the currently selected clothes in the current weather
    */
-  thermometer: number;
+  thermometer: {
+    value: number,
+    label: string
+  };
 
   /**
    * current climate info: temperature, wind, precipitation
@@ -70,7 +73,15 @@ export class ClothPickComponent implements OnInit {
 
     // compare that with the current temperature to get the thermometer value
     const feltTemperature = this.computeFeltTemperature();
-    this.thermometer = currentSetTemperature - feltTemperature;
+    const thermometerValue = currentSetTemperature - feltTemperature;
+
+    // set the label, like "a little too cold"
+    const thermometerLabel = this.getLabel(thermometerValue);
+
+    this.thermometer = {
+      value: thermometerValue,
+      label: thermometerLabel
+    };
   }
 
   /**
@@ -91,4 +102,24 @@ export class ClothPickComponent implements OnInit {
       snow: false
     };
   }
+
+  /**
+   * TODO: move to thermometer service
+   * returns a user-readable label
+   * @param value temperature
+   */
+  private getLabel(value: number) {
+    if (value === 0) { return 'perfect!'; }
+
+    if (value <= -20) { return 'much too cold!'; }
+    if (value <= -5) { return 'too cold'; }
+    if (value <= -2) { return 'a little too cold'; }
+
+    if (value <= 2) { return 'ok'; }
+
+    if (value < 5) { return 'a little too warm'; }
+    if (value < 20) { return 'too warm'; }
+    if (value > 20) { return 'much too warm!'; }
+  }
+
 }
