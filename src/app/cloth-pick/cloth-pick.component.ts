@@ -33,11 +33,20 @@ export class ClothPickComponent implements OnInit {
    */
   private climate: any;
 
+  /**
+   * current location coordinates and display name
+   */
+  private location: any;
+
   constructor() { }
 
   ngOnInit() {
     this.clothes = this.getClothes();
     this.climate = this.getCurrentClimate();
+    this.location = {
+      value: '50.0466814,19.86479,11',
+      name: 'kraków'
+    };
 
     this.updateThermometer();
   }
@@ -90,7 +99,23 @@ export class ClothPickComponent implements OnInit {
    * computes temperature felt based on temperature, wind and precipitation
    */
   private computeFeltTemperature() {
-    return this.climate.temperature - Math.round(this.climate.wind / 10) - 5 * this.climate.rain - 5 * this.climate.snow;
+    let tempDifConditions = 0;
+    switch (this.climate.conditions) {
+      case 'rain':
+        tempDifConditions = -5;
+        break;
+      case 'snow':
+        tempDifConditions = -5;
+        break;
+      case 'sunny':
+      case 'cloudy':
+        tempDifConditions = 0;
+        break;
+      default:
+        tempDifConditions = 0;
+    }
+
+    return this.climate.temperature - Math.round(this.climate.wind / 10) + tempDifConditions;
   }
 
   /**
@@ -100,8 +125,7 @@ export class ClothPickComponent implements OnInit {
     return {
       temperature: 10,
       wind: 0,
-      rain: false,
-      snow: false
+      conditions: 'rain',
     };
   }
 

@@ -7,6 +7,32 @@
   </div>
 </section>
 
+<section id="climate" class="container">
+  <div class="row">
+    <!-- use custom climate data  -->
+    <div id="climate-edit" class="col-1">
+      <a href="#"><span>✏</span></a>
+    </div>
+
+    <!-- current climate conditions -->
+    <div id="climate-conditions" class="col-4">
+      <!-- temperature in degrees -->
+      <span>{{climate.temperature}}° C</span>
+
+      <!--  weather conditions icon  -->
+      <span *ngIf="climate.conditions === 'sunny'">☀</span>
+      <span *ngIf="climate.conditions === 'cloudy'">☁</span>
+      <span *ngIf="climate.conditions === 'rain'">🌧</span>
+      <span *ngIf="climate.conditions === 'snow'">❄</span>
+    </div>
+
+    <!-- location search -->
+    <div id="climate-location" class="col-7">
+      <input name="location" class="form-control" type="text" [(ngModel)]="location.name">
+    </div>
+  </div>
+</section>
+
 <section id="clothes" class="container">
   <ul id="clothes-list" class="row">
     <li *ngFor="let cloth of clothes; let i = index;" class="cloth col-4"
