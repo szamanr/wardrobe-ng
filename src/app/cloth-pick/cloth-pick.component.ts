@@ -48,6 +48,12 @@ export class ClothPickComponent implements OnInit {
    */
   debugMode = true;
 
+  /**
+   * the base temperature, for which no clothes are needed
+   * modifiable in user settings in the future
+   */
+  private zeroTemperature = 22;
+
   constructor() { }
 
   ngOnInit() {
@@ -102,7 +108,7 @@ export class ClothPickComponent implements OnInit {
 
     // compare that with the current temperature to get the thermometer value
     const feltTemperature = this.computeFeltTemperature();
-    const value = currentSetTemperature - feltTemperature;
+    const value = feltTemperature - this.zeroTemperature + currentSetTemperature;
 
     // set the label, like "a little too cold"
     const [label, className] = this.getLabel(value);
