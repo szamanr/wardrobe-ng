@@ -21,11 +21,14 @@
       <input *ngIf="editing" class="form-control climate-temperature" type="text" [(ngModel)]="climate.temperature"
       (keypress)="onTemperatureManuallyChanged($event)"/>
 
-      <!--  weather conditions icon  -->
-      <span *ngIf="!editing && climate.conditions === 'sunny'">☀</span>
-      <span *ngIf="!editing && climate.conditions === 'cloudy'">☁</span>
-      <span *ngIf="!editing && climate.conditions === 'rain'">🌧</span>
-      <span *ngIf="!editing && climate.conditions === 'snow'">❄</span>
+      <!--  weather conditions -->
+      <ng-container *ngFor="let condition of weatherConditions">
+        <span *ngIf="!editing && climate.conditions === condition.value">{{condition.icon}}</span>
+      </ng-container>
+
+      <select *ngIf="editing" [(ngModel)]="climate.conditions" class="custom-select">
+        <option *ngFor="let condition of weatherConditions" value="{{condition.value}}">{{condition.icon}}</option>
+      </select>
     </div>
 
     <!-- location search -->

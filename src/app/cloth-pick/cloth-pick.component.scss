@@ -1,9 +1,16 @@
 #climate {
   #climate-conditions {
+    * {
+      display: inline-block;
+    }
     .climate-temperature {
       // when we edit temperature, the input element should more or less overlap with the span
       max-width: 50px;
       border: none;
+    }
+
+    select {
+      max-width: 150px;
     }
   }
 }

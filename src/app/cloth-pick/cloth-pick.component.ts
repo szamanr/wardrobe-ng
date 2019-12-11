@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Cloth} from '../cloth';
 import {CLOTHES} from '../../assets/mocks/clothes';
+import {WEATHERS} from '../../assets/mocks/weather-conditions';
 import {environment} from '../../environments/environment';
 
 @Component({
@@ -53,6 +54,7 @@ export class ClothPickComponent implements OnInit {
    * modifiable in user settings in the future
    */
   private zeroTemperature = 22;
+  weatherConditions: any[];
 
   constructor() { }
 
@@ -63,6 +65,7 @@ export class ClothPickComponent implements OnInit {
       value: '50.0466814,19.86479,11',
       name: 'kraków'
     };
+    this.weatherConditions = this.getWeatherConditions();
 
     this.updateThermometer();
 
@@ -184,5 +187,12 @@ export class ClothPickComponent implements OnInit {
       this.editing = false;
       this.updateThermometer();
     }
+  }
+
+  /**
+   * fetches possible weather conditions such as sunny, cloudy, rainy
+   */
+  private getWeatherConditions() {
+    return WEATHERS;
   }
 }
