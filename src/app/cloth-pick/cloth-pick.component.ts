@@ -38,6 +38,16 @@ export class ClothPickComponent implements OnInit {
    */
   private location: any;
 
+  /**
+   * are we in edit mode
+   */
+  editing = false;
+
+  /**
+   * should we display debug info in the footer
+   */
+  debugMode = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -49,6 +59,11 @@ export class ClothPickComponent implements OnInit {
     };
 
     this.updateThermometer();
+
+    // force non-debug mode in production
+    if (environment.production) {
+      this.debugMode = false;
+    }
   }
 
   private getClothes() {
@@ -71,6 +86,10 @@ export class ClothPickComponent implements OnInit {
     this.updateThermometer();
   }
 
+  /**
+   * updates the value of the thermometer
+   * @todo: this should happen automatically
+   */
   private updateThermometer() {
     const selectedClothes = this.clothes.filter((cloth) => {
       return this.clothSet[cloth.id];
@@ -148,4 +167,16 @@ export class ClothPickComponent implements OnInit {
     if (value > 20) { return ['much too warm!', 'bg-danger']; }
   }
 
+  /**
+   * detect key press. if enter, set the temperature and exit edit mode.
+   *
+   * @param event keyboard event
+   */
+  onTemperatureManuallyChanged(event: KeyboardEvent) {
+    // exit edit mode when enter pressed
+    if (event.key === 'Enter') {
+      this.editing = false;
+      this.updateThermometer();
+    }
+  }
 }

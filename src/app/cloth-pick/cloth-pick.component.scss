@@ -1,3 +1,13 @@
+#climate {
+  #climate-conditions {
+    .climate-temperature {
+      // when we edit temperature, the input element should more or less overlap with the span
+      max-width: 50px;
+      border: none;
+    }
+  }
+}
+
 .cloth {
   margin: 10px 0;
 
