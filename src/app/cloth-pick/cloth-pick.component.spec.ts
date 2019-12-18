@@ -107,7 +107,8 @@ describe('ClothPickComponent', () => {
       });
 
       it('should display current location', () => {
-
+        const inputElement = element.querySelector('input');
+        expect(inputElement.getAttribute('ng-reflect-model')).toEqual(component.location.name);
       });
 
       /*it('should search for location', () => {
@@ -126,7 +127,13 @@ describe('ClothPickComponent', () => {
       });
 
       it('should display current activity', () => {
+        const inputElements = element.querySelectorAll('input');
+        expect(inputElements.length).toEqual(3);
 
+        const currentActivity = component.climate.activity;
+        for (const el of inputElements) {
+          expect(el.getAttribute('ng-reflect-model')).toEqual(currentActivity);
+        }
       });
 
       it('should modify activity', () => {
