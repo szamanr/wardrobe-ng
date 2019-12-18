@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Cloth} from '../cloth';
 import {CLOTHES} from '../../assets/mocks/clothes';
 import {WEATHERS} from '../../assets/mocks/weather-conditions';
@@ -61,7 +61,8 @@ export class ClothPickComponent implements OnInit {
   private zeroTemperature = 22;
   weatherConditions: any[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.clothes = this.getClothes();
@@ -153,7 +154,7 @@ export class ClothPickComponent implements OnInit {
     let tempDifActivity = 0;
     switch (this.climate.activity) {
       case 'cycling':
-        tempDifActivity =  -5;
+        tempDifActivity = -5;
         break;
       case 'running':
         tempDifActivity = 5;
@@ -186,6 +187,7 @@ export class ClothPickComponent implements OnInit {
    * @param value temperature
    */
   private getLabel(value: number) {
+    // @formatter:off
     if (value === 0) { return ['perfect!', 'bg-success']; }
 
     if (value <= -20) { return ['much too cold!', 'bg-danger']; }
@@ -197,6 +199,7 @@ export class ClothPickComponent implements OnInit {
     if (value < 5) { return ['a little too warm', 'bg-warning']; }
     if (value < 20) { return ['too warm', 'bg-danger']; }
     if (value > 20) { return ['much too warm!', 'bg-danger']; }
+    // @formatter:on
   }
 
   /**

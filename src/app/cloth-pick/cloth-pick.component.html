@@ -1,6 +1,7 @@
 <section id="thermometer" class="container">
   <div class="progress row">
-    <div class="progress-bar {{thermometer.class}}" role="progressbar" [attr.aria-valuenow]="thermometer.value" aria-valuemin="-20" aria-valuemax ="20"
+    <div class="progress-bar {{thermometer.class}}" role="progressbar" [attr.aria-valuenow]="thermometer.value"
+         aria-valuemin="-20" aria-valuemax="20"
          style="min-width: 2em;" [style.width]="((20+thermometer.value)/40)*100 + '%'">
       {{thermometer.label}}
     </div>
@@ -21,7 +22,7 @@
       <!-- temperature in degrees -->
       <span *ngIf="!editing" class="climate-temperature">{{climate.temperature}}° C</span>
       <input *ngIf="editing" class="form-control climate-temperature" type="text" [(ngModel)]="climate.temperature"
-      (keypress)="onTemperatureManuallyChanged($event)"/>
+             (keypress)="onTemperatureManuallyChanged($event)"/>
 
       <!--  weather conditions -->
       <ng-container *ngFor="let condition of weatherConditions">
@@ -56,7 +57,7 @@
   <ul id="clothes-list" class="row">
     <li *ngFor="let cloth of clothes; let i = index;" class="cloth col-4"
         [ngClass]="{'selected' : this.clothSet[cloth.id]}"
-    (click)="toggle(cloth)">
+        (click)="toggle(cloth)">
       <img src="{{cloth.image}}" class="mx-auto d-block"/>
     </li>
   </ul>
