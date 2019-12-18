@@ -186,7 +186,7 @@ export class ClothPickComponent implements OnInit {
    * returns a user-readable label
    * @param value temperature
    */
-  private getLabel(value: number) {
+  getLabel(value: number): string[] {
     // @formatter:off
     if (value === 0) { return ['perfect!', 'bg-success']; }
 

@@ -1,6 +1,6 @@
 <section id="thermometer" class="container">
   <div class="progress row">
-    <div class="progress-bar {{thermometer.class}}" role="progressbar" [attr.aria-valuenow]="thermometer.value"
+    <div id="thermometer-bar" class="progress-bar {{thermometer.class}}" role="progressbar" [attr.aria-valuenow]="thermometer.value"
          aria-valuemin="-20" aria-valuemax="20"
          style="min-width: 2em;" [style.width]="((20+thermometer.value)/40)*100 + '%'">
       {{thermometer.label}}
