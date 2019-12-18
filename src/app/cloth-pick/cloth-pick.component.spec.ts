@@ -24,4 +24,15 @@ describe('ClothPickComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set values on init', () => {
+    fixture.whenStable().then(() => {
+      expect(component.clothes).toBeDefined();
+      expect(component.climate).toBeDefined();
+      expect(component.location).toBeDefined();
+      expect(component.weatherConditions).toBeDefined();
+      expect(component.feltTemperature).toBeDefined();
+      expect(component.thermometer).toBeDefined();
+    });
+  });
 });

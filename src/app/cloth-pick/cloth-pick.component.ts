@@ -13,12 +13,12 @@ export class ClothPickComponent implements OnInit {
   /**
    * list of available clothes
    */
-  private clothes: Cloth[];
+  clothes: Cloth[];
 
   /**
    * clothes currently selected for wearing
    */
-  private clothSet: boolean[] = [];
+  clothSet: boolean[] = [];
 
   /**
    * the value indicating how cold / warm we'll feel if wearing the currently selected clothes in the current weather
@@ -32,17 +32,17 @@ export class ClothPickComponent implements OnInit {
   /**
    * current climate info: temperature, wind, precipitation
    */
-  private climate: any;
+  climate: any;
 
   /**
    * the felt temperature computed from climate data
    */
-  private feltTemperature: number;
+  feltTemperature: number;
 
   /**
    * current location coordinates and display name
    */
-  private location: any;
+  location: any;
 
   /**
    * are we in edit mode
@@ -58,7 +58,7 @@ export class ClothPickComponent implements OnInit {
    * the base temperature, for which no clothes are needed
    * modifiable in user settings in the future
    */
-  private zeroTemperature = 22;
+  zeroTemperature = 22;
   weatherConditions: any[];
 
   constructor() {
