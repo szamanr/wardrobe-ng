@@ -77,11 +77,14 @@ describe('ClothPickComponent', () => {
       });
 
       it('should display current temperature', () => {
-
+        expect(element.textContent).toContain(component.climate.temperature);
       });
 
       it('should display current conditions', () => {
-
+        const currentConditions = component.climate.conditions;
+        expect(element.textContent).toContain(component.weatherConditions.find(
+          weatherCondition => weatherCondition.value === currentConditions
+        ).icon);
       });
 
       it('should modify temperature', () => {
