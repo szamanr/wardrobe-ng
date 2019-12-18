@@ -7,7 +7,9 @@
   </div>
 </section>
 
+<!-- climate info -->
 <section id="climate" class="container">
+  <!-- climate, location -->
   <div class="row">
     <!-- use custom climate data  -->
     <div id="climate-edit" class="col-1">
@@ -36,8 +38,20 @@
       <input name="location" class="form-control" type="text" [(ngModel)]="location.name"/>
     </div>
   </div>
+
+  <!-- choose activity -->
+  <div class="row">
+    <div id="climate-activity" class="col-12">
+      <div *ngFor="let activity of ['walking', 'cycling', 'running']" class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" [id]="activity" [value]="activity"
+               [(ngModel)]="climate.activity" (change)="updateThermometer()">
+        <label class="form-check-label" [for]="activity">{{activity}}</label>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- clothes picker -->
 <section id="clothes" class="container">
   <ul id="clothes-list" class="row">
     <li *ngFor="let cloth of clothes; let i = index;" class="cloth col-4"
@@ -56,5 +70,9 @@
   <div *ngIf="debugMode" class="row" id="debug-info">
     <small class="col-6">temperature: {{climate.temperature}}</small>
     <small class="col-6">thermometer: {{thermometer.value}}</small>
+    <small class="col-6">felt: {{feltTemperature}}</small>
+    <small class="col-6">conditions: {{climate.conditions}}</small>
+    <small class="col-6"></small>
+    <small class="col-6">activity: {{climate.activity}}</small>
   </div>
 </footer>

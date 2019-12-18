@@ -35,6 +35,11 @@ export class ClothPickComponent implements OnInit {
   private climate: any;
 
   /**
+   * the felt temperature computed from climate data
+   */
+  private feltTemperature: number;
+
+  /**
    * current location coordinates and display name
    */
   private location: any;
@@ -110,8 +115,8 @@ export class ClothPickComponent implements OnInit {
     }).reduce((a, b) => a + b, 0);
 
     // compare that with the current temperature to get the thermometer value
-    const feltTemperature = this.computeFeltTemperature();
-    const value = feltTemperature - this.zeroTemperature + currentSetTemperature;
+    this.feltTemperature = this.computeFeltTemperature();
+    const value = this.feltTemperature - this.zeroTemperature + currentSetTemperature;
 
     // set the label, like "a little too cold"
     const [label, className] = this.getLabel(value);
@@ -127,6 +132,7 @@ export class ClothPickComponent implements OnInit {
    * computes temperature felt based on temperature, wind and precipitation
    */
   private computeFeltTemperature() {
+    // adjust for precipitation
     let tempDifConditions = 0;
     switch (this.climate.conditions) {
       case 'rain':
@@ -143,7 +149,23 @@ export class ClothPickComponent implements OnInit {
         tempDifConditions = 0;
     }
 
-    return this.climate.temperature - Math.round(this.climate.wind / 10) + tempDifConditions;
+    // adjust for activity
+    let tempDifActivity = 0;
+    switch (this.climate.activity) {
+      case 'cycling':
+        tempDifActivity =  -5;
+        break;
+      case 'running':
+        tempDifActivity = 5;
+        break;
+      case 'walking':
+        tempDifActivity = 0;
+        break;
+      default:
+        tempDifActivity = 0;
+    }
+
+    return this.climate.temperature - Math.round(this.climate.wind / 10) + tempDifConditions + tempDifActivity;
   }
 
   /**
@@ -153,7 +175,8 @@ export class ClothPickComponent implements OnInit {
     return {
       temperature: 10,
       wind: 0,
-      conditions: 'rain',
+      conditions: 'sunny',
+      activity: 'walking',
     };
   }
 
