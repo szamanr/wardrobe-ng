@@ -67,9 +67,10 @@ describe('ClothPickComponent', () => {
     });
 
     describe('weather conditions', () => {
+      let parentElement;
       beforeEach(() => {
-        const parent = element;
-        element = compiled.querySelector('#climate-conditions');
+        parentElement = element;
+        element = parentElement.querySelector('#climate-conditions');
       });
 
       it('should exist', () => {
@@ -97,9 +98,10 @@ describe('ClothPickComponent', () => {
     });
 
     describe('location', () => {
+      let parentElement;
       beforeEach(() => {
-        const parent = element;
-        element = compiled.querySelector('#climate-location');
+        parentElement = element;
+        element = parentElement.querySelector('#climate-location');
       });
 
       it('should exist', () => {
@@ -117,9 +119,10 @@ describe('ClothPickComponent', () => {
     });
 
     describe('activity', () => {
+      let parentElement;
       beforeEach(() => {
-        const parent = element;
-        element = compiled.querySelector('#climate-activity');
+        parentElement = element;
+        element = parentElement.querySelector('#climate-activity');
       });
 
       it('should exist', () => {
