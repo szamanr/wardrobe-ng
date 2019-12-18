@@ -7,7 +7,6 @@ describe('ClothPickComponent', () => {
   let component: ClothPickComponent;
   let fixture: ComponentFixture<ClothPickComponent>;
   let compiled: any;
-  let thermometerElement: Element;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,7 +21,6 @@ describe('ClothPickComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     compiled = fixture.debugElement.nativeElement;
-    thermometerElement = compiled.querySelector('#thermometer');
   });
 
   it('should create', () => {
@@ -41,6 +39,11 @@ describe('ClothPickComponent', () => {
   });
 
   describe('thermometer element', () => {
+    let thermometerElement;
+    beforeEach(() => {
+      thermometerElement = compiled.querySelector('#thermometer');
+    });
+
     it('should exist', () => {
       expect(thermometerElement).toBeDefined();
     });
