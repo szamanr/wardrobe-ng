@@ -39,20 +39,96 @@ describe('ClothPickComponent', () => {
   });
 
   describe('thermometer element', () => {
-    let thermometerElement;
+    let element;
     beforeEach(() => {
-      thermometerElement = compiled.querySelector('#thermometer');
+      element = compiled.querySelector('#thermometer');
     });
 
     it('should exist', () => {
-      expect(thermometerElement).toBeDefined();
+      expect(element).toBeDefined();
     });
 
     it('should display the starting conditions without clothes', () => {
       const expectedValue = component.feltTemperature - component.zeroTemperature;
       const expectedLabel = component.getLabel(expectedValue);
-      expect(thermometerElement.textContent).toContain(expectedLabel[0]);
-      expect(thermometerElement.querySelector('#thermometer-bar').className).toContain(expectedLabel[1]);
+      expect(element.textContent).toContain(expectedLabel[0]);
+      expect(element.querySelector('#thermometer-bar').className).toContain(expectedLabel[1]);
+    });
+  });
+
+  describe('climate element', () => {
+    let element;
+    beforeEach(() => {
+      element = compiled.querySelector('#climate');
+    });
+
+    it('should exist', () => {
+      expect(element).toBeDefined();
+    });
+
+    describe('weather conditions', () => {
+      beforeEach(() => {
+        const parent = element;
+        element = compiled.querySelector('#climate-conditions');
+      });
+
+      it('should exist', () => {
+        expect(element).toBeDefined();
+      });
+
+      it('should display current temperature', () => {
+
+      });
+
+      it('should display current conditions', () => {
+
+      });
+
+      it('should modify temperature', () => {
+
+      });
+
+      it('should modify conditions', () => {
+
+      });
+    });
+
+    describe('location', () => {
+      beforeEach(() => {
+        const parent = element;
+        element = compiled.querySelector('#climate-location');
+      });
+
+      it('should exist', () => {
+        expect(element).toBeDefined();
+      });
+
+      it('should display current location', () => {
+
+      });
+
+      /*it('should search for location', () => {
+
+      });*/
+    });
+
+    describe('activity', () => {
+      beforeEach(() => {
+        const parent = element;
+        element = compiled.querySelector('#climate-activity');
+      });
+
+      it('should exist', () => {
+        expect(element).toBeDefined();
+      });
+
+      it('should display current activity', () => {
+
+      });
+
+      it('should modify activity', () => {
+
+      });
     });
   });
 });
