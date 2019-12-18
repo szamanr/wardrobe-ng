@@ -28,14 +28,12 @@ describe('ClothPickComponent', () => {
   });
 
   it('should set values on init', () => {
-    fixture.whenStable().then(() => {
-      expect(component.clothes).toBeDefined();
-      expect(component.climate).toBeDefined();
-      expect(component.location).toBeDefined();
-      expect(component.weatherConditions).toBeDefined();
-      expect(component.feltTemperature).toBeDefined();
-      expect(component.thermometer).toBeDefined();
-    });
+    expect(component.clothes).toBeDefined();
+    expect(component.climate).toBeDefined();
+    expect(component.location).toBeDefined();
+    expect(component.weatherConditions).toBeDefined();
+    expect(component.feltTemperature).toBeDefined();
+    expect(component.thermometer).toBeDefined();
   });
 
   describe('thermometer element', () => {
@@ -88,12 +86,12 @@ describe('ClothPickComponent', () => {
         ).icon);
       });
 
-      it('should modify temperature', () => {
-
+      // TODO: implement test
+      xit('should modify temperature', () => {
       });
 
-      it('should modify conditions', () => {
-
+      // TODO: implement test
+      xit('should modify conditions', () => {
       });
     });
 
@@ -113,9 +111,9 @@ describe('ClothPickComponent', () => {
         expect(inputElement.getAttribute('ng-reflect-model')).toEqual(component.location.name);
       });
 
-      /*it('should search for location', () => {
-
-      });*/
+      // TODO: implement functionality and test
+      xit('should search for location', () => {
+      });
     });
 
     describe('activity', () => {
@@ -139,8 +137,8 @@ describe('ClothPickComponent', () => {
         }
       });
 
-      it('should modify activity', () => {
-
+      // TODO: implement test
+      xit('should modify activity', () => {
       });
     });
   });
